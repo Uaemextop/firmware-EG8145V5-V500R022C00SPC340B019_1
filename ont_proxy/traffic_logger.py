@@ -17,6 +17,9 @@ class TrafficLogger:
         self._fh = open(self.log_file, "a", encoding="utf-8")
         print(f"[+] Traffic log: {self.log_file}")
 
+    def __del__(self):
+        self.close()
+
     def log_request(self, flow_id, method, url, headers, body=None):
         entry = {
             "type": "request",

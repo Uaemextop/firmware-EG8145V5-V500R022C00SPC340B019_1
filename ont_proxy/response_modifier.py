@@ -134,11 +134,12 @@ FEATURE_UNLOCK_JS = """
     if (typeof sysUserType !== 'undefined') { sysUserType = '0'; }
 
     document.addEventListener('DOMContentLoaded', function(){
-        var hidden = document.querySelectorAll('[style*="display:none"], [style*="display: none"]');
+        var hidden = document.querySelectorAll('[style*="display:none"], [style*="display: none"], .hidden');
         hidden.forEach(function(el){
             if (el.id && (el.id.indexOf('menu') !== -1 || el.id.indexOf('Menu') !== -1 ||
                 el.id.indexOf('admin') !== -1 || el.id.indexOf('config') !== -1)) {
                 el.style.display = '';
+                el.classList.remove('hidden');
             }
         });
 

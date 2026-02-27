@@ -67,6 +67,8 @@ def launch_chrome(proxy_host="127.0.0.1", proxy_port=8080, target_url="http://19
     print(f"[+] Launching Chrome with proxy {proxy_host}:{proxy_port}")
     print(f"    Profile: {profile_dir}")
     print(f"    Target:  {target_url}")
+    print(f"[!] WARNING: This Chrome instance has certificate checks disabled.")
+    print(f"    Use it ONLY for accessing {target_url}. Do NOT browse other sites.")
 
     try:
         subprocess.Popen(args)

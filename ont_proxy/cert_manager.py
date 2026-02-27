@@ -76,13 +76,15 @@ def generate_ca(cert_dir=None):
 
 
 def install_ca_windows(ca_cert_path):
+    safe_path = os.path.normpath(os.path.abspath(ca_cert_path))
     ps_cmd = (
-        f'Import-Certificate -FilePath "{ca_cert_path}" '
-        f'-CertStoreLocation Cert:\\LocalMachine\\Root'
+        f"Import-Certificate -FilePath '{safe_path}' "
+        f"-CertStoreLocation Cert:\\LocalMachine\\Root"
     )
+    escaped_cmd = ps_cmd.replace("'", "''")
     try:
         subprocess.run(
-            ["powershell", "-Command", f"Start-Process powershell -Verb RunAs -ArgumentList '-Command {ps_cmd}'"],
+            ["powershell", "-Command", f"Start-Process powershell -Verb RunAs -ArgumentList '-Command {escaped_cmd}'"],
             check=True,
         )
         print(f"[+] CA certificate installed in Windows root store: {ca_cert_path}")

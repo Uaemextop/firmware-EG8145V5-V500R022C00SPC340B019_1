@@ -52,8 +52,8 @@ def main():
     start_parser.add_argument("--no-chrome", action="store_true", help="Don't launch Chrome automatically")
     start_parser.add_argument("--no-install-cert", action="store_true", help="Skip CA certificate installation")
 
-    cert_parser = subparsers.add_parser("install-cert", help="Install CA certificate in Windows root store")
-    cert_parser = subparsers.add_parser("uninstall-cert", help="Remove CA certificate from Windows root store")
+    subparsers.add_parser("install-cert", help="Install CA certificate in Windows root store")
+    subparsers.add_parser("uninstall-cert", help="Remove CA certificate from Windows root store")
 
     subparsers.add_parser("cleanup", help="Remove Chrome profile and generated files")
 
