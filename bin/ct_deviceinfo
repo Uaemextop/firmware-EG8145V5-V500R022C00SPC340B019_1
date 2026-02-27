@@ -1,0 +1,33 @@
+#!/bin/sh
+
+feature_cqct=`GetFeature HW_SSMP_FEATURE_MNGT_CQCT`
+feature_xzct=`GetFeature HW_SSMP_FEATURE_MNGT_XZCT`
+feature_ynct=`GetFeature HW_SSMP_FEATURE_MNGT_YNCT`
+if [ $feature_cqct -ne 1 ] && [ $feature_xzct -ne 1 ] && [ $feature_ynct -ne 1 ];then
+    exit 0
+fi
+
+macoutput=`getboardinfo 0x0000000a`
+
+ouiline=$(cwmp getvalue InternetGatewayDevice.DeviceInfo.ManufacturerOUI)
+ouioutput=${ouiline##*ManufacturerOUI=}
+
+snoutput=`getboardinfo 0x00000019`
+
+factoryoutput="huawei"
+
+modelline=$(cwmp getvalue InternetGatewayDevice.DeviceInfo.ModelName)
+modeloutput=${modelline##*ModelName=}
+
+hwversionline=$(cwmp getvalue InternetGatewayDevice.DeviceInfo.HardwareVersion)
+hwversionoutput=${hwversionline##*HardwareVersion=}
+
+swversionline=$(cwmp getvalue InternetGatewayDevice.DeviceInfo.SoftwareVersion)
+swversionoutput=${swversionline##*SoftwareVersion=}
+
+echo "mac=$macoutput"
+echo "sn=$ouioutput-$snoutput"
+echo "factory=$factoryoutput"
+echo "model=$modeloutput"
+echo "hwversion=$hwversionoutput"
+echo "swversion=$swversionoutput"
