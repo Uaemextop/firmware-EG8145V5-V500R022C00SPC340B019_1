@@ -1,0 +1,2 @@
+# firmware-EG8145V5-V500R022C00SPC340B019_1
+Extracted content from Huawei EG8145V5-V500R022C00SPC340B019 firmware
